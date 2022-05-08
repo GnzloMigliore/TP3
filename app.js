@@ -60,6 +60,7 @@ new Vue({
           this.saludJugador,
           numRandomEspecial
         );
+        console.log("Esta atacando el monstruo")
         if (this.saludJugador === 100) {
           this.saludMonstruo = 100;
           this.turnos.length = 0;
@@ -70,8 +71,8 @@ new Vue({
         } else {
           let turno = {
             text:
-              "EL JUGADOR GOLPEA DURAMENTE AL MONSTRUO EN " + numRandomEspecial,
-            esJugador: false,
+              "EL MONSTRUO GOLPEA DURAMENTE AL JUGADOR EN " + numRandomEspecial,
+            esJugador: true,
           };
           this.turnos.push(turno);
           this.esJugador = true;
@@ -85,23 +86,23 @@ new Vue({
           this.saludMonstruo,
           numRandomEspecial
         );
+        console.log("Esta atacando el jugador")
         if (this.saludMonstruo === 100) {
-          this.saludJugador = 100;
-          this.turnos.length = 0;
-          let turno = {
-            text: "EL JUGADOR ES EL GANADOR",
-          };
-          this.turnos.push(turno);
-        } else {
-          let turno = {
-            text:
-              "EL MONSTRUO LASTIMA DURAMENTE AL JUGADOR EN " +
-              numRandomEspecial,
-            esJugador: true,
-          };
-          this.turnos.push(turno);
-          this.esJugador = false;
-        }
+            this.saludMonstruo = 100;
+            this.turnos.length = 0;
+            let turno = {
+              text: "EL JUGADOR ES EL GANADOR",
+            };
+            this.turnos.push(turno);
+          } else {
+            let turno = {
+              text:
+                "EL JUGADOR GOLPEA DURAMENTE AL MONTRUO EN " + numRandomEspecial,
+                 esJugador: false,
+            };
+            this.turnos.push(turno);
+            this.esJugador = false;
+          }
       }
       function getrandom(min, max) {
         min = Math.ceil(min);
@@ -158,7 +159,6 @@ new Vue({
         return Math.floor(Math.random() * (max - min + 1)) + min;
       }
     },
-
     calcularHeridas: function (salud, numRandom) {
       let saludBarra;
       salud - numRandom < 0
